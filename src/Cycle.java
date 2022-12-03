@@ -28,7 +28,6 @@ public class Cycle {
 
         int numberOfVisitableNodes = graph.getNodesCount();
         // ascending order by weight
-        //TODO ULTRA SUSPECIOUS
         Collections.sort(graph.getArretes());
 
         Graph tempGraph = new Graph();
@@ -99,13 +98,19 @@ public class Cycle {
 
         visitedNodes = new ArrayList<>();
         tempArretes = new ArrayList<>();
+        minCycleArretes = new ArrayList<>();
         numberOfVisitedNodes = 0;
 
         try {
             startingNode = graph.getNodes().get(0);
             backtrackingCycleHamiltonien(startingNode);
-            System.out.println("Le cycle hamiltonien trouve avec la methode du backtracking:");
-            afficherCycle(minCycleArretes, graph.getNodesCount());
+            if(!minCycleArretes.isEmpty()){
+                System.out.println("Le cycle hamiltonien trouve avec la methode du backtracking:");
+                afficherCycle(minCycleArretes, graph.getNodesCount());
+            }else{
+                System.out.println("Pas de cycle hamiltonien trouve avec la methode du backtracking");
+            }
+
         } catch (ArreteInexistanteException e) {
             System.out.println("Erreur fatal lors du backtkhacking");
         }
